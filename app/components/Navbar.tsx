@@ -1,28 +1,64 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { UserIcon, ShoppingCartIcon, MenuIcon, XIcon } from "./Icons";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  UserIcon,
+  ShoppingCartIcon,
+  MenuIcon,
+  XIcon,
+  ChevronDownIcon,
+  WrenchIcon,
+  CalendarIcon,
+  BoltIcon,
+  CpuChipIcon,
+  ShieldCheckIcon,
+  CheckIcon,
+} from "./Icons";
 
 interface NavbarProps {
-  onBookServiceClick: () => void;
-  onSignupClick: () => void;
+  onBookServiceClick?: () => void;
+  onSignupClick?: () => void;
 }
 
 export default function Navbar({ onBookServiceClick, onSignupClick }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(true);
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const menuTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const navLinks = [
-    { name: "Home", href: "/", active: true },
-    { name: "Cars", href: "#cars" },
-    { name: "Services", href: "#services" },
-    { name: "Workshops", href: "/workshops" },
-    { name: "Spare Parts", href: "/spare-parts" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "About Us", href: "#about" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const handleMouseEnter = () => {
+    if (menuTimerRef.current) clearTimeout(menuTimerRef.current);
+    setServicesMenuOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    menuTimerRef.current = setTimeout(() => {
+      setServicesMenuOpen(false);
+    }, 150);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (menuTimerRef.current) clearTimeout(menuTimerRef.current);
+    };
+  }, []);
+
+  const handleBookClick = () => {
+    setServicesMenuOpen(false);
+    setMobileMenuOpen(false);
+    if (onBookServiceClick) {
+      onBookServiceClick();
+    } else {
+      router.push("/book-service");
+    }
+  };
+
+  const isServicesActive = pathname?.startsWith("/services") || pathname === "/book-service";
 
   return (
     <header className="w-full z-40 sticky top-0 bg-white">
@@ -53,21 +89,239 @@ export default function Navbar({ onBookServiceClick, onSignupClick }: NavbarProp
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-7">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`text-sm font-medium transition-colors relative py-2 ${link.active
-                  ? "text-blue-600 font-semibold"
-                  : "text-slate-700 hover:text-blue-600"
-                  }`}
+            {/* Home */}
+            <Link
+              href="/"
+              className={`text-sm font-medium transition-colors relative py-2 ${
+                pathname === "/" ? "text-blue-600 font-semibold" : "text-slate-700 hover:text-blue-600"
+              }`}
+            >
+              Home
+              {pathname === "/" && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
+              )}
+            </Link>
+
+            {/* Services with Integrated Mega Menu */}
+            <div
+              className="relative py-2"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                href="/services"
+                className={`text-sm font-medium transition-colors flex items-center gap-1.5 py-1 ${
+                  isServicesActive
+                    ? "text-blue-600 font-semibold"
+                    : "text-slate-700 hover:text-blue-600"
+                }`}
               >
-                {link.name}
-                {link.active && (
+                <span>Services</span>
+                <ChevronDownIcon
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    servicesMenuOpen ? "rotate-180 text-blue-600" : "text-slate-400"
+                  }`}
+                />
+                {isServicesActive && (
                   <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
                 )}
-              </a>
-            ))}
+              </Link>
+
+              {/* Mega Menu Dropdown */}
+              {servicesMenuOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+                  <div className="w-[660px] bg-white rounded-2xl border border-slate-200/90 shadow-2xl p-6 grid grid-cols-12 gap-6 animate-in fade-in zoom-in-95 duration-150">
+                    {/* Left Column: Workshop Services (7 cols) */}
+                    <div className="col-span-7 flex flex-col justify-between pr-4 border-r border-slate-100">
+                      <div>
+                        <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase block mb-3">
+                          Workshop Services Directory
+                        </span>
+
+                        <div className="space-y-2.5">
+                          {/* Item 1 */}
+                          <Link
+                            href="/services/starter-motor-repair"
+                            onClick={() => setServicesMenuOpen(false)}
+                            className="flex items-start gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                              <BoltIcon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                Starter Motor Repair &amp; Rebuild
+                              </div>
+                              <p className="text-[11px] text-slate-500 leading-snug">
+                                Bench dyno testing, armature rewinding &amp; solenoid repair.
+                              </p>
+                            </div>
+                          </Link>
+
+                          {/* Item 2 */}
+                          <Link
+                            href="/services/alternator-testing-rewinding"
+                            onClick={() => setServicesMenuOpen(false)}
+                            className="flex items-start gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                              <CpuChipIcon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                Alternator Testing &amp; Rewinding
+                              </div>
+                              <p className="text-[11px] text-slate-500 leading-snug">
+                                Rectifier diode packs, IC regulators &amp; high-amp tests.
+                              </p>
+                            </div>
+                          </Link>
+
+                          {/* Item 3 */}
+                          <Link
+                            href="/services/computerized-engine-diagnostics"
+                            onClick={() => setServicesMenuOpen(false)}
+                            className="flex items-start gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                              <WrenchIcon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                Computerized OBD-II Diagnostics
+                              </div>
+                              <p className="text-[11px] text-slate-500 leading-snug">
+                                ECU scan, live telemetry sensors &amp; wiring tracing.
+                              </p>
+                            </div>
+                          </Link>
+
+                          {/* Item 4 */}
+                          <Link
+                            href="/services/complete-periodic-maintenance"
+                            onClick={() => setServicesMenuOpen(false)}
+                            className="flex items-start gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                              <ShieldCheckIcon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                                Periodic Maintenance &amp; Brakes
+                              </div>
+                              <p className="text-[11px] text-slate-500 leading-snug">
+                                32-point check, synthetic oil &amp; disc rotor resurfacing.
+                              </p>
+                            </div>
+                          </Link>
+                        </div>
+                      </div>
+
+                      <div className="pt-3 mt-2 border-t border-slate-100">
+                        <Link
+                          href="/services"
+                          onClick={() => setServicesMenuOpen(false)}
+                          className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 transition-colors"
+                        >
+                          <span>Explore All 8+ Services &amp; PKR Rates</span>
+                          <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Right Column: Online Bay Reservation & Quote Card (5 cols) */}
+                    <div className="col-span-5 flex flex-col justify-between bg-slate-50/80 rounded-xl border border-blue-100 p-4">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-bold tracking-wider text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded uppercase">
+                            Direct Booking
+                          </span>
+                          <CalendarIcon className="w-4 h-4 text-blue-600" />
+                        </div>
+
+                        <h4 className="text-sm font-bold text-slate-900 leading-snug">
+                          Book a Service / Request a Quote
+                        </h4>
+                        <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                          Schedule your preferred workshop bay appointment online or get an instant PKR price estimate.
+                        </p>
+
+                        <ul className="mt-3.5 space-y-1.5 text-[11px] text-slate-700 font-medium">
+                          <li className="flex items-center gap-1.5">
+                            <CheckIcon className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                            <span>Rs. 0 Advance · Pay after test</span>
+                          </li>
+                          <li className="flex items-center gap-1.5">
+                            <CheckIcon className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                            <span>Instant price calculation</span>
+                          </li>
+                          <li className="flex items-center gap-1.5">
+                            <CheckIcon className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                            <span>Official Written Warranty</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 border-t border-slate-200/60 mt-3 space-y-2">
+                        <Link
+                          href="/book-service"
+                          onClick={() => setServicesMenuOpen(false)}
+                          className="block w-full py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs text-center rounded-lg shadow-xs hover:shadow transition-all"
+                        >
+                          Book an Appointment
+                        </Link>
+                        <Link
+                          href="/workshops"
+                          onClick={() => setServicesMenuOpen(false)}
+                          className="block text-center text-[11px] font-semibold text-slate-600 hover:text-blue-600 transition-colors"
+                        >
+                          View Our 6 Specialized Bays &rarr;
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Workshops */}
+            <Link
+              href="/workshops"
+              className={`text-sm font-medium transition-colors relative py-2 ${
+                pathname?.startsWith("/workshops")
+                  ? "text-blue-600 font-semibold"
+                  : "text-slate-700 hover:text-blue-600"
+              }`}
+            >
+              Workshops
+              {pathname?.startsWith("/workshops") && (
+                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
+              )}
+            </Link>
+
+            {/* Gallery */}
+            <Link
+              href="/#gallery"
+              className="text-sm font-medium transition-colors relative py-2 text-slate-700 hover:text-blue-600"
+            >
+              Gallery
+            </Link>
+
+            {/* About Us */}
+            <Link
+              href="/#about"
+              className="text-sm font-medium transition-colors relative py-2 text-slate-700 hover:text-blue-600"
+            >
+              About Us
+            </Link>
+
+            {/* Contact */}
+            <Link
+              href="/#contact"
+              className="text-sm font-medium transition-colors relative py-2 text-slate-700 hover:text-blue-600"
+            >
+              Contact
+            </Link>
           </div>
 
           {/* Desktop Actions */}
@@ -94,9 +348,9 @@ export default function Navbar({ onBookServiceClick, onSignupClick }: NavbarProp
               Signup
             </button>
 
-            {/* Book a Service CTA */}
+            {/* Book a Service CTA Button */}
             <button
-              onClick={onBookServiceClick}
+              onClick={handleBookClick}
               className="bg-blue-600 hover:bg-blue-700 active:scale-98 text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm hover:shadow transition-all cursor-pointer"
             >
               Book a Service
@@ -130,40 +384,131 @@ export default function Navbar({ onBookServiceClick, onSignupClick }: NavbarProp
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-3 shadow-lg">
-            <div className="flex flex-col space-y-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg ${link.active
+            <div className="flex flex-col space-y-1.5">
+              {/* Home */}
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`px-3 py-2 text-sm font-medium rounded-lg ${
+                  pathname === "/" ? "bg-blue-50 text-blue-600 font-semibold" : "text-slate-700 hover:bg-slate-50"
+                }`}
+              >
+                Home
+              </Link>
+
+              {/* Mobile Services Accordion */}
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg"
+                >
+                  <span className={isServicesActive ? "text-blue-600 font-semibold" : ""}>Services &amp; Booking</span>
+                  <ChevronDownIcon
+                    className={`w-3.5 h-3.5 transition-transform ${
+                      mobileServicesOpen ? "rotate-180 text-blue-600" : "text-slate-400"
+                    }`}
+                  />
+                </button>
+
+                {mobileServicesOpen && (
+                  <div className="pl-4 pr-2 py-1 space-y-1 border-l-2 border-blue-100 ml-3 my-1">
+                    <Link
+                      href="/services"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-3 py-1.5 text-xs font-semibold text-slate-800 hover:text-blue-600"
+                    >
+                      All Workshop Services
+                    </Link>
+                    <Link
+                      href="/book-service"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center justify-between px-3 py-1.5 text-xs font-semibold text-blue-600 bg-blue-50/70 rounded-md"
+                    >
+                      <span>Book a Service / Quote</span>
+                      <span className="text-[10px] font-bold text-blue-700 bg-white px-1.5 py-0.5 rounded border border-blue-200">
+                        Rs. 0 Advance
+                      </span>
+                    </Link>
+                    <Link
+                      href="/services/starter-motor-repair"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-3 py-1 text-xs text-slate-600 hover:text-blue-600"
+                    >
+                      Starter Motor Diagnostics &amp; Repair
+                    </Link>
+                    <Link
+                      href="/services/alternator-testing-rewinding"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-3 py-1 text-xs text-slate-600 hover:text-blue-600"
+                    >
+                      Alternator Diagnostics &amp; Rewinding
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Workshops */}
+              <Link
+                href="/workshops"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`px-3 py-2 text-sm font-medium rounded-lg ${
+                  pathname?.startsWith("/workshops")
                     ? "bg-blue-50 text-blue-600 font-semibold"
                     : "text-slate-700 hover:bg-slate-50"
-                    }`}
-                >
-                  {link.name}
-                </a>
-              ))}
+                }`}
+              >
+                Workshops
+              </Link>
+
+              {/* Gallery */}
+              <Link
+                href="/#gallery"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-2 text-sm font-medium rounded-lg text-slate-700 hover:bg-slate-50"
+              >
+                Gallery
+              </Link>
+
+              {/* About Us */}
+              <Link
+                href="/#about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-2 text-sm font-medium rounded-lg text-slate-700 hover:bg-slate-50"
+              >
+                About Us
+              </Link>
+
+              {/* Contact */}
+              <Link
+                href="/#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-2 text-sm font-medium rounded-lg text-slate-700 hover:bg-slate-50"
+              >
+                Contact
+              </Link>
             </div>
 
             <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
+              {onSignupClick && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onSignupClick();
+                  }}
+                  className="flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-slate-700 border border-slate-200 rounded-lg cursor-pointer"
+                >
+                  <UserIcon className="w-4 h-4" />
+                  Signup
+                </button>
+              )}
               <button
-                type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onSignupClick();
+                  handleBookClick();
                 }}
-                className="flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-slate-700 border border-slate-200 rounded-lg cursor-pointer"
-              >
-                <UserIcon className="w-4 h-4" />
-                Signup
-              </button>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onBookServiceClick();
-                }}
-                className="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow-sm"
+                className="w-full py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow-sm cursor-pointer"
               >
                 Book a Service
               </button>

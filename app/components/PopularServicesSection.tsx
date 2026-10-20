@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface PopularServicesSectionProps {
   onSelectService: (serviceName: string) => void;
@@ -102,6 +103,19 @@ export default function PopularServicesSection({ onSelectService }: PopularServi
               </div>
             </div>
           ))}
+        </div>
+
+        {/* View All Services CTA Button */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 text-sm font-bold shadow-xs hover:shadow transition-all group"
+          >
+            <span>Explore All 7+ Specialized Workshop Services</span>
+            <span className="text-blue-600 group-hover:translate-x-1 transition-transform">
+              &rarr;
+            </span>
+          </Link>
         </div>
       </div>
     </section>
