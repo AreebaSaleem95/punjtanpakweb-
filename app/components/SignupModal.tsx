@@ -30,6 +30,12 @@ export default function SignupModal({ isOpen, onClose }: SignupModalProps) {
   const [validationSuccess, setValidationSuccess] = useState(false);
 
   // Prevent background scrolling and handle Escape key
+  const handleClose = React.useCallback(() => {
+    setErrors({});
+    setValidationSuccess(false);
+    onClose();
+  }, [onClose]);
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -48,13 +54,7 @@ export default function SignupModal({ isOpen, onClose }: SignupModalProps) {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
-
-  const handleClose = () => {
-    setErrors({});
-    setValidationSuccess(false);
-    onClose();
-  };
+  }, [isOpen, handleClose]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
