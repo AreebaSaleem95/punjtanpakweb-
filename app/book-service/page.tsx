@@ -71,10 +71,10 @@ export default function BookServicePage() {
 
       <main className="flex-1 w-full">
         {/* Light Hero Section matching HeroSection.tsx */}
-        <section className="relative w-full pt-12 pb-16 md:pt-20 md:pb-24 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/40 border-b border-slate-100">
+        <section className="relative w-full pt-10 pb-12 sm:pt-14 sm:pb-16 md:pt-20 md:pb-24 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/40 border-b border-slate-100">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             {/* Breadcrumb Navigation matching site */}
-            <div className="text-xs text-slate-500 mb-4 flex items-center justify-center gap-2">
+            <div className="text-xs text-slate-500 mb-3 sm:mb-4 flex items-center justify-center gap-2">
               <Link href="/" className="hover:text-blue-600 transition-colors">
                 Home
               </Link>
@@ -87,55 +87,55 @@ export default function BookServicePage() {
             </div>
 
             {/* Category Tag matching HeroSection.tsx */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-4">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-3 sm:mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-              <span className="text-xs font-bold tracking-widest text-blue-600 uppercase">
+              <span className="text-[11px] sm:text-xs font-bold tracking-widest text-blue-600 uppercase">
                 Online Bay Reservation
               </span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold tracking-tight text-slate-900 max-w-3xl mx-auto leading-tight md:leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 max-w-3xl mx-auto leading-tight">
               Book a Service or Request a Quote
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               Schedule your appointment at AutoPro. Select your car make, required service, and preferred workshop bay with zero upfront advance.
             </p>
 
             {/* 4 Trust Metrics Cards matching NetworkSection.tsx style */}
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-              <div className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5">
+            <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+              <div className="p-3 sm:p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2 sm:mb-2.5">
                   <ShieldCheckIcon className="w-4 h-4" />
                 </div>
-                <div className="text-xl sm:text-2xl font-black text-slate-900">30 - 180 Days</div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">Written Warranty</div>
+                <div className="text-lg sm:text-xl md:text-2xl font-black text-slate-900">30-180 Days</div>
+                <div className="text-[11px] sm:text-xs font-medium text-slate-500 mt-0.5 truncate">Written Warranty</div>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5">
+              <div className="p-3 sm:p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2 sm:mb-2.5">
                   <StarIcon className="w-4 h-4 text-blue-600 fill-blue-600" />
                 </div>
-                <div className="text-xl sm:text-2xl font-black text-slate-900">4.9 / 5.0</div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">Customer Satisfaction</div>
+                <div className="text-lg sm:text-xl md:text-2xl font-black text-slate-900">4.9 / 5.0</div>
+                <div className="text-[11px] sm:text-xs font-medium text-slate-500 mt-0.5 truncate">Customer Rating</div>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5">
+              <div className="p-3 sm:p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2 sm:mb-2.5">
                   <ClockIcon className="w-4 h-4" />
                 </div>
-                <div className="text-xl sm:text-2xl font-black text-slate-900">Rs. 0 Advance</div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">Pay After Road Test</div>
+                <div className="text-lg sm:text-xl md:text-2xl font-black text-slate-900">Rs. 0 Advance</div>
+                <div className="text-[11px] sm:text-xs font-medium text-slate-500 mt-0.5 truncate">Pay After Road Test</div>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5">
+              <div className="p-3 sm:p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2 sm:mb-2.5">
                   <WrenchIcon className="w-4 h-4" />
                 </div>
-                <div className="text-xl sm:text-2xl font-black text-slate-900">6 Bays</div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">Specialist Stations</div>
+                <div className="text-lg sm:text-xl md:text-2xl font-black text-slate-900">6 Bays</div>
+                <div className="text-[11px] sm:text-xs font-medium text-slate-500 mt-0.5 truncate">Specialist Stations</div>
               </div>
             </div>
           </div>
@@ -185,73 +185,73 @@ export default function BookServicePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {/* Call Us */}
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+              <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5 sm:mb-3">
                   <PhoneIcon className="w-4 h-4" />
                 </div>
-                <span className="text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
+                <span className="text-[10px] sm:text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
                   Call Us
                 </span>
                 <a
                   href="tel:+923001234567"
-                  className="font-bold text-sm text-slate-900 hover:text-blue-600 transition-colors mt-0.5 block"
+                  className="font-bold text-sm text-slate-900 hover:text-blue-600 transition-colors mt-0.5 block truncate"
                 >
                   +92 300 1234567
                 </a>
-                <p className="text-[11px] text-slate-500 mt-1">
+                <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1">
                   Immediate workshop desk support
                 </p>
               </div>
 
               {/* Email */}
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+              <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5 sm:mb-3">
                   <MailIcon className="w-4 h-4" />
                 </div>
-                <span className="text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
+                <span className="text-[10px] sm:text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
                   Email
                 </span>
                 <a
                   href="mailto:info@autopro.com"
-                  className="font-bold text-sm text-slate-900 hover:text-blue-600 transition-colors mt-0.5 block"
+                  className="font-bold text-sm text-slate-900 hover:text-blue-600 transition-colors mt-0.5 block truncate"
                 >
                   info@autopro.com
                 </a>
-                <p className="text-[11px] text-slate-500 mt-1">
+                <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1">
                   Response within 2 hours
                 </p>
               </div>
 
               {/* Location */}
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+              <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5 sm:mb-3">
                   <MapPinIcon className="w-4 h-4" />
                 </div>
-                <span className="text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
+                <span className="text-[10px] sm:text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
                   Location
                 </span>
-                <div className="font-bold text-sm text-slate-900 mt-0.5">
+                <div className="font-bold text-sm text-slate-900 mt-0.5 truncate">
                   Plot 12-B, Main Auto Hub
                 </div>
-                <p className="text-[11px] text-slate-500 mt-1">
+                <p className="text-[10px] sm:text-[11px] text-slate-500 mt-1">
                   Commercial Workshop Center
                 </p>
               </div>
 
               {/* Opening Hours */}
-              <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-2xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+              <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-2xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5 sm:mb-3">
                   <ClockIcon className="w-4 h-4" />
                 </div>
-                <span className="text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
+                <span className="text-[10px] sm:text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
                   Opening Hours
                 </span>
                 <div className="font-bold text-xs text-slate-900 mt-0.5 leading-snug">
                   Mon &ndash; Sat: 9:00 AM &ndash; 7:30 PM
                 </div>
-                <p className="text-[11px] text-blue-600 mt-1">
+                <p className="text-[10px] sm:text-[11px] text-blue-600 mt-1">
                   Sunday: Emergency on-call
                 </p>
               </div>

@@ -81,91 +81,91 @@ export default function ServicesPage() {
 
       <main className="flex-1 w-full">
         {/* Simple Light Top Section - Exactly like workshops page */}
-        <section className="relative w-full pt-12 pb-14 md:pt-16 md:pb-20 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/40 border-b border-slate-100">
+        <section className="relative w-full pt-10 pb-12 sm:pt-14 sm:pb-16 md:pt-16 md:pb-20 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/40 border-b border-slate-100">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             {/* Category Tag */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-4">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-3 sm:mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-              <span className="text-xs font-bold tracking-widest text-blue-600 uppercase">
+              <span className="text-[11px] sm:text-xs font-bold tracking-widest text-blue-600 uppercase">
                 Workshop Services
               </span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 max-w-3xl mx-auto leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 max-w-3xl mx-auto leading-tight">
               Professional Workshop Services
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               Expert vehicle maintenance, diagnostics, and specialized starter &amp; alternator repair services with transparent PKR rates and written warranty.
             </p>
 
             {/* Action Buttons */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
               <button
                 type="button"
                 onClick={() => handleOpenBooking()}
-                className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-98 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+                className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-98 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all cursor-pointer text-center"
               >
                 Book a Service
               </button>
 
               <Link
                 href="/workshops"
-                className="px-6 py-3 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm transition-colors"
+                className="px-6 py-3 rounded-xl border border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm transition-colors text-center"
               >
                 Explore Workshop Bays
               </Link>
             </div>
 
             {/* 4 Stats Cards matching workshops page */}
-            <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-              <div className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5">
+            <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+              <div className="p-3 sm:p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2 sm:mb-2.5">
                   <WrenchIcon className="w-4 h-4" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-blue-600">8+</div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">Specialist Services</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-blue-600">8+</div>
+                <div className="text-[11px] sm:text-xs font-medium text-slate-500 mt-0.5 truncate">Specialist Services</div>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5">
+              <div className="p-3 sm:p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2 sm:mb-2.5">
                   <ShieldCheckIcon className="w-4 h-4" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-blue-600">100%</div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">Written Warranty</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-blue-600">100%</div>
+                <div className="text-[11px] sm:text-xs font-medium text-slate-500 mt-0.5 truncate">Written Warranty</div>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5">
+              <div className="p-3 sm:p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2 sm:mb-2.5">
                   <CpuChipIcon className="w-4 h-4" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-blue-600">Bench</div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">Dynamometer Tested</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-blue-600">Bench</div>
+                <div className="text-[11px] sm:text-xs font-medium text-slate-500 mt-0.5 truncate">Dyno Tested</div>
               </div>
 
-              <div className="p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2.5">
+              <div className="p-3 sm:p-4 bg-white rounded-xl border border-slate-200/80 shadow-xs text-left">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2 sm:mb-2.5">
                   <BoltIcon className="w-4 h-4" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-blue-600">12,000+</div>
-                <div className="text-xs font-medium text-slate-500 mt-0.5">Vehicles Serviced</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-black text-blue-600">12,000+</div>
+                <div className="text-[11px] sm:text-xs font-medium text-slate-500 mt-0.5 truncate">Vehicles Serviced</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Main Services Section - Exactly matching PopularServicesSection.tsx on Homepage */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center max-w-2xl mx-auto mb-10">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 md:py-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2 block">
               Comprehensive Care
             </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Explore Our Workshop Services
             </h2>
-            <p className="mt-2 text-sm sm:text-base text-slate-600">
+            <p className="mt-2 text-xs sm:text-sm md:text-base text-slate-600">
               Select your required automotive service or filter by your car&apos;s symptoms.
             </p>
           </div>
@@ -183,7 +183,7 @@ export default function ServicesPage() {
 
           {/* Service Cards Grid */}
           {filteredServices.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {filteredServices.map((service: ServiceItem) => (
                 <ServiceCard
                   key={service.id}

@@ -77,11 +77,11 @@ export default function Navbar({ onBookServiceClick, onSignupClick }: NavbarProp
                 priority
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 leading-none">
+            <div className="flex flex-col min-w-0">
+              <span className="text-sm sm:text-base md:text-lg font-black tracking-tight text-slate-900 leading-none truncate">
                 PANJTAN PAK AUTO
               </span>
-              <span className="text-[9px] font-bold tracking-wider text-slate-500 uppercase mt-0.5">
+              <span className="text-[8px] sm:text-[9px] font-bold tracking-wider text-slate-500 uppercase mt-0.5 truncate">
                 STARTER &amp; ALTERNATOR SPECIALIST
               </span>
             </div>
@@ -129,8 +129,8 @@ export default function Navbar({ onBookServiceClick, onSignupClick }: NavbarProp
 
               {/* Mega Menu Dropdown */}
               {servicesMenuOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
-                  <div className="w-[660px] bg-white rounded-2xl border border-slate-200/90 shadow-2xl p-6 grid grid-cols-12 gap-6 animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute top-full left-1/2 -translate-x-1/3 xl:-translate-x-1/2 pt-2 z-50">
+                  <div className="w-[620px] max-w-[calc(100vw-3rem)] bg-white rounded-2xl border border-slate-200/90 shadow-2xl p-5 lg:p-6 grid grid-cols-12 gap-5 animate-in fade-in zoom-in-95 duration-150">
                     {/* Left Column: Workshop Services (7 cols) */}
                     <div className="col-span-7 flex flex-col justify-between pr-4 border-r border-slate-100">
                       <div>
@@ -383,7 +383,7 @@ export default function Navbar({ onBookServiceClick, onSignupClick }: NavbarProp
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-3 shadow-lg">
+          <div className="lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-3 shadow-lg max-w-full overflow-hidden">
             <div className="flex flex-col space-y-1.5">
               {/* Home */}
               <Link

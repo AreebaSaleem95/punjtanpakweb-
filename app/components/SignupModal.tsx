@@ -111,7 +111,7 @@ export default function SignupModal({ isOpen, onClose }: SignupModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200"
       onClick={handleClose}
       role="dialog"
       aria-modal="true"
@@ -123,12 +123,12 @@ export default function SignupModal({ isOpen, onClose }: SignupModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-slate-900 text-white border-b border-slate-800">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 bg-slate-900 text-white border-b border-slate-800">
           <div>
-            <h3 id="signup-modal-title" className="font-bold text-lg tracking-tight">
+            <h3 id="signup-modal-title" className="font-bold text-base sm:text-lg tracking-tight">
               Create an Account
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
               Sign up with AutoPro to manage your services
             </p>
           </div>
@@ -143,7 +143,7 @@ export default function SignupModal({ isOpen, onClose }: SignupModalProps) {
         </div>
 
         {/* Content Body */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {validationSuccess ? (
             <div className="py-6 text-center space-y-4">
               <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto border border-blue-200">
