@@ -206,14 +206,14 @@ export default function BookingQuoteForm({
   }
 
   return (
-    <div className={`w-full bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden ${isModal ? "p-4 sm:p-6" : "p-6 sm:p-8"}`}>
+    <div className={`w-full bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden ${isModal ? "p-3 sm:p-5" : "p-4 sm:p-6 md:p-8"}`}>
       {/* Top Form Header & Mode Switch */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-5 sm:pb-6 border-b border-slate-100">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-blue-600 block mb-1">
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-blue-600 block mb-1">
             Panjtan Pak Auto Workshop
           </span>
-          <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
             {formMode === "book" ? "Book a Workshop Service" : "Request a Price Quote"}
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 mt-1">
@@ -222,11 +222,11 @@ export default function BookingQuoteForm({
         </div>
 
         {/* Dual Mode Switch */}
-        <div className="inline-flex p-1 bg-slate-100 rounded-xl border border-slate-200/80 shrink-0">
+        <div className="inline-flex p-1 bg-slate-100 rounded-xl border border-slate-200/80 w-full sm:w-auto shrink-0">
           <button
             type="button"
             onClick={() => setFormMode("book")}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               formMode === "book"
                 ? "bg-white text-blue-600 shadow-xs"
                 : "text-slate-600 hover:text-slate-900"
@@ -238,7 +238,7 @@ export default function BookingQuoteForm({
           <button
             type="button"
             onClick={() => setFormMode("quote")}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
               formMode === "quote"
                 ? "bg-white text-blue-600 shadow-xs"
                 : "text-slate-600 hover:text-slate-900"
@@ -499,15 +499,15 @@ export default function BookingQuoteForm({
         </div>
 
         {/* Live Estimator Summary Box (Light Card matching site) */}
-        <div className="p-5 bg-gradient-to-r from-slate-50 via-blue-50/20 to-slate-50 border border-slate-200/90 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="p-4 sm:p-5 bg-gradient-to-r from-slate-50 via-blue-50/20 to-slate-50 border border-slate-200/90 rounded-2xl flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           <div className="space-y-1">
             <span className="text-[10px] font-bold tracking-wider uppercase text-blue-600 block">
               Transparent Estimate Summary
             </span>
-            <div className="text-xl sm:text-2xl font-extrabold text-slate-900">
+            <div className="text-lg sm:text-xl md:text-2xl font-extrabold text-slate-900">
               Estimated Total: <span className="text-blue-600">{formattedEstimatedPrice}</span>
             </div>
-            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-slate-500">
               <span className="flex items-center gap-1 font-medium text-slate-700">
                 <ClockIcon className="w-3.5 h-3.5 text-blue-600" />
                 <span>{currentService?.estimatedTime}</span>
